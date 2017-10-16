@@ -68,5 +68,14 @@ namespace SummativeUnit2.Properties {
                 return ResourceManager.GetStream("cashSound", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream recieptSound {
+            get {
+                return ResourceManager.GetStream("recieptSound", resourceCulture);
+            }
+        }
     }
 }

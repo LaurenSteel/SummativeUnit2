@@ -59,7 +59,7 @@ namespace SummativeUnit2
         {
             try
             {
-                //Soud Player 
+                //Sound Player Cash 
                 SoundPlayer cashPlayer = new SoundPlayer(Properties.Resources.cashSound);
                 cashPlayer.Play();
 
@@ -80,6 +80,9 @@ namespace SummativeUnit2
         }
         private void printReceiptButton_Click(object sender, EventArgs e)
         {
+            //Sound Player Reciept
+            SoundPlayer recieptPlayer = new SoundPlayer(Properties.Resources.recieptSound);
+            recieptPlayer.Play();
             //Output Text for Receipt
             receiptOutputLabel.Text = "\n";
             //Titel
