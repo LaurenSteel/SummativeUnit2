@@ -16,7 +16,7 @@ namespace SummativeUnit2
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new no());
+            Application.Run(new cashRegister());
         }
     }
 }
