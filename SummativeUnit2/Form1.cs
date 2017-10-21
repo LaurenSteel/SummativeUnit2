@@ -2,6 +2,8 @@
 using System;
 using System.Media;
 using System.Windows.Forms;
+using System.Threading;
+using System.Drawing;
 
 namespace SummativeUnit2
 {
@@ -80,13 +82,22 @@ namespace SummativeUnit2
         }
         private void printReceiptButton_Click(object sender, EventArgs e)
         {
-            //Sound Player Reciept
-            SoundPlayer recieptPlayer = new SoundPlayer(Properties.Resources.recieptSound);
+            try
+            {
+                //Try and catch so Reciept can't Print Before Inputs are Set
+                sundaeNumber = Convert.ToInt16(sundaeTextBox.Text);
+                flurriesNumber = Convert.ToInt16(flurrieTextBox.Text);
+                milkshakeNumber = Convert.ToInt16(milkshakeTextBox.Text);
+                coneNumber = Convert.ToInt16(coneTextBox.Text);
+
+                //Sound Player Reciept
+                SoundPlayer recieptPlayer = new SoundPlayer(Properties.Resources.recieptSound);
             recieptPlayer.Play();
+            Thread.Sleep(1500);
             //Output Text for Receipt
             receiptOutputLabel.Text = "\n";
             //Titel
-            receiptOutputLabel.Text += "                      Soft Serve Parlour Recpt.";
+            receiptOutputLabel.Text += "  Soft Serve Parlour Recpt.";
             receiptOutputLabel.Text += "\n";
             receiptOutputLabel.Text += "\n";
             //Order Number
@@ -97,34 +108,40 @@ namespace SummativeUnit2
             receiptOutputLabel.Text += "\n";
             receiptOutputLabel.Text += "\n";
             //Order
-            receiptOutputLabel.Text += "Sundae          x" + sundaeNumber + " @ " + SUNDAE_CHARGE;
+            receiptOutputLabel.Text += "Sundae              x" + sundaeNumber + " @ " + SUNDAE_CHARGE;
             receiptOutputLabel.Text += "\n";
-            receiptOutputLabel.Text += "Flurries          x" + flurriesNumber + " @ " + FLURRIES_CHARGE;
+            receiptOutputLabel.Text += "Flurries            x" + flurriesNumber + " @ " + FLURRIES_CHARGE;
             receiptOutputLabel.Text += "\n";
-            receiptOutputLabel.Text += "Milkshake          x" + milkshakeNumber + " @ " + MILKSHAKE_CHARGE;
+            receiptOutputLabel.Text += "Milkshake           x" + milkshakeNumber + " @ " + MILKSHAKE_CHARGE;
             receiptOutputLabel.Text += "\n";
-            receiptOutputLabel.Text += "Cone          x" + coneNumber + " @ " + CONE_CHARGE;
+            receiptOutputLabel.Text += "Cone                x" + coneNumber + " @ " + CONE_CHARGE;
             receiptOutputLabel.Text += "\n";
             receiptOutputLabel.Text += "\n";
             //SubTotal
-            receiptOutputLabel.Text += "SubTotal          " + subTotal.ToString("C");
+            receiptOutputLabel.Text += "SubTotal            " + subTotal.ToString("C");
             receiptOutputLabel.Text += "\n";
             //Tax
-            receiptOutputLabel.Text += "Tax          " + tax.ToString("C");
+            receiptOutputLabel.Text += "Tax                 " + tax.ToString("C");
             receiptOutputLabel.Text += "\n";
             //Total
-            receiptOutputLabel.Text += "Total          " + total.ToString("C");
+            receiptOutputLabel.Text += "Total               " + total.ToString("C");
             receiptOutputLabel.Text += "\n";
             receiptOutputLabel.Text += "\n";
             //Tendered
-            receiptOutputLabel.Text += "Tendered          " + tenderedNumber.ToString("C");
+            receiptOutputLabel.Text += "Tendered            " + tenderedNumber.ToString("C");
             receiptOutputLabel.Text += "\n";
             //Change Due
-            receiptOutputLabel.Text += "Change          " + changeDue.ToString("C");
+            receiptOutputLabel.Text += "Change              " + changeDue.ToString("C");
             receiptOutputLabel.Text += "\n";
             receiptOutputLabel.Text += "\n";
             //End Message
             receiptOutputLabel.Text += "Have a great day!";
+            }
+            catch
+            {
+                receiptOutputLabel.Text = "You must fill out your order, with numbers, before we can process your reciept.";
+                return;
+            }
         }
             private void newOrderButton_Click(object sender, EventArgs e)
             {
@@ -139,6 +156,19 @@ namespace SummativeUnit2
             milkshakeTextBox.Text = "";
             coneTextBox.Text = "";
             tenderedTextBox.Text = "";
-            }
+            sundaeNumber = 0;
+            flurriesNumber = 0;
+            milkshakeNumber = 0;
+            coneNumber = 0;
+            sundaeTotal = 0;
+            flurriesTotal = 0;
+            milkshakeTotal = 0;
+            coneTotal = 0;
+            subTotal = 0;
+            tax = 0;
+            total = 0;
+            changeDue = 0;
+            tenderedNumber = 0;
         }
-    }
+        }
+}

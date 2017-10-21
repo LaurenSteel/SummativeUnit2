@@ -281,7 +281,7 @@
             // receiptOutputLabel
             // 
             this.receiptOutputLabel.BackColor = System.Drawing.Color.White;
-            this.receiptOutputLabel.Font = new System.Drawing.Font("Constantia", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.receiptOutputLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.receiptOutputLabel.Location = new System.Drawing.Point(336, 241);
             this.receiptOutputLabel.Name = "receiptOutputLabel";
             this.receiptOutputLabel.Size = new System.Drawing.Size(275, 493);
